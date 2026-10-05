@@ -79,32 +79,6 @@ namespace GameFramework.UI.EditorTools
             EditorUtility.RevealInFinder(Path.GetFullPath(AtlasRoot));
         }
 
-        [MenuItem("Tools/UI/图集/测试取图（需 Play 模式）", priority = 203)]
-        public static void TestGetSprite()
-        {
-            var gc = GameController.Instance;
-            if (gc == null || gc.SpriteAtlases == null || !gc.SpriteAtlases.IsInitialized)
-            {
-                Debug.LogWarning("[图集测试] 需要进入 Play 模式且游戏初始化完成后再点。");
-                return;
-            }
-
-            // 取 UISprite 表里第一行做演示
-            var db = gc.Config.Database;
-            if (db == null || db.UISprite == null || db.UISprite.Count == 0)
-            {
-                Debug.LogWarning("[图集测试] UISprite 表为空。");
-                return;
-            }
-
-            var row = db.UISprite.Rows[0];
-            Debug.Log("[图集测试] 表行: Id=" + row.Id + " Atlas=" + row.Atlas + " Sprite=" + row.Sprite);
-            gc.SpriteAtlases.GetSpriteByIdAsync(row.Id, s =>
-            {
-                Debug.Log("[图集测试] GetSpriteById(\"" + row.Id + "\") => " + (s != null ? s.name : "null（取图失败）"));
-            });
-        }
-
         private static void AddFolderSprites(SpriteAtlas atlas, string folder)
         {
             var sprites = new List<Object>();
