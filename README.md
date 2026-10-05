@@ -113,6 +113,12 @@ Unity.exe -quit -batchmode -projectPath <工程> ^
 > `SpriteAtlasUtility.PackAllAtlases` 强制打包。**别手动 `new SpriteAtlas()` + Add 而不打包** ——
 > 未打包的图集里 Sprite 是占位符，运行时 `GetSprite()` 会**原生崩溃（SIGSEGV）**（Unity 2021.3 已知问题），
 > 而且 YooAsset 的 bundle 构建**不会**自动打包图集。改完图集图片后要重跑该菜单再重建资源包。
+>
+> **稳妥备选（推荐新手/首次）**：完全用 Unity 标准 GUI 创建图集 ——
+> 右键 `Assets/UI/Atlas/` → `Create → 2D → Sprite Atlas` → 选中图集资产 → 把 Sprite 拖进
+> Packables 列表 → 点右上角 **Pack** 按钮。效果一样，绕开脚本化打包在这个 Unity 版本的偶发崩溃。
+> 框架只消费图集资产，不管它是 GUI 还是脚本建的。
+>
 > 图集在 YooAsset bundle 里，走远端下载 = **资源热更**（改图 / 加图不用发版，只更新资源包）。
 > 低层 API（按图集名+图片名直取）也保留：`GetSprite(atlas, sprite)` / `GetSpriteAsync`。
 
