@@ -33,8 +33,8 @@ namespace GameFramework.Config
         /// <summary>标签</summary>
         public string[] Tags;
 #if UNITY_5_3_OR_NEWER
-        /// <summary>图标(只客户端)</summary>
-        public string IconPath;
+        /// <summary>图ID(填 UISprite 表的 Id)</summary>
+        public string SpriteId;
 #endif
 #if !UNITY_5_3_OR_NEWER
         /// <summary>服务端权重(只服务端)</summary>
@@ -47,7 +47,7 @@ namespace GameFramework.Config
     {
         public const string FileName = "Item";
 #if UNITY_5_3_OR_NEWER
-        public const int SchemaHash = 1929588688;
+        public const int SchemaHash = 549453278;
 #else
         public const int SchemaHash = 1674716885;
 #endif
@@ -73,7 +73,7 @@ namespace GameFramework.Config
                     row.Droplist = reader.ReadIntArray();
                     row.Tags = reader.ReadStringArray();
 #if UNITY_5_3_OR_NEWER
-                    row.IconPath = reader.ReadString();
+                    row.SpriteId = reader.ReadString();
 #endif
 #if !UNITY_5_3_OR_NEWER
                     row.ServerOnly = reader.ReadInt();

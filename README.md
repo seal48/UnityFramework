@@ -103,8 +103,10 @@ Unity.exe -quit -batchmode -projectPath <工程> ^
    然后 Tools/配置表/导出全部表
 4) 重建资源包（Tools/YooAsset/2 + 6 + 清 yoo/）
 5) 运行时取图（不写死图集/图片名，只用逻辑 ID）：
-     GameController.Instance.SpriteAtlases.GetSpriteById("item_icon_sword")        // 已加载则同步
-     GameController.Instance.SpriteAtlases.GetSpriteByIdAsync("item_icon_sword", s => ...)  // 异步
+     var item = GameController.Instance.Config.Database.Item.Get(2);
+     GameController.Instance.SpriteAtlases.GetSpriteById(item.SpriteId)             // 已加载则同步
+     GameController.Instance.SpriteAtlases.GetSpriteByIdAsync(item.SpriteId, s => ...)  // 异步
+     // Item.SpriteId = "icon_sword"，对应 UISprite 表：Atlas=TestAtlas, Sprite=sword
 ```
 
 > 图集在 YooAsset bundle 里，走远端下载 = **资源热更**（改图 / 加图不用发版，只更新资源包）。

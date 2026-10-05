@@ -10,7 +10,7 @@ namespace GameFramework.Config
     /// <summary>UISprite 表的数据行（来源：UISprite.xlsx）。</summary>
     public sealed class UISpriteConfig
     {
-        /// <summary>逻辑图ID(代码用这个取图；Item.IconPath 填这里)</summary>
+        /// <summary>逻辑图ID(代码用这个取图；Item.SpriteId 填这里)</summary>
         public string Id;
 #if UNITY_5_3_OR_NEWER
         /// <summary>图集名(Assets/UI/Atlas/&lt;名&gt;)</summary>
