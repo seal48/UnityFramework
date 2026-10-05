@@ -1,0 +1,19 @@
+{
+    "name": "GameFramework.Net.Server",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Net.Shared",
+        "GameFramework.Security",
+        "GameFramework.Timer.Core",
+        "GameFramework.Config"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

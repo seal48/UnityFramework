@@ -1,0 +1,21 @@
+{
+    "name": "GameFramework.UI",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Event",
+        "GameFramework.Log",
+        "GameFramework.Timer",
+        "GameFramework.Resource",
+        "DOTween.Modules"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

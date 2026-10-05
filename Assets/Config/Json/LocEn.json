@@ -1,0 +1,17 @@
+[
+  {"Key": "main_title", "Text": "Main City", "Image": "UI/Main/title_en"},
+  {"Key": "login_button", "Text": "Login", "Image": "UI/Login/btn_login_en"},
+  {"Key": "register_button", "Text": "Register", "Image": "UI/Login/btn_register_en"},
+  {"Key": "confirm", "Text": "OK", "Image": "UI/Common/btn_confirm_en"},
+  {"Key": "cancel", "Text": "Cancel", "Image": "UI/Common/btn_cancel_en"},
+  {"Key": "bag", "Text": "Bag", "Image": "UI/Main/btn_bag_en"},
+  {"Key": "shop", "Text": "Shop", "Image": "UI/Main/btn_shop_en"},
+  {"Key": "settings", "Text": "Settings", "Image": "UI/Main/btn_settings_en"},
+  {"Key": "loading_tip", "Text": "Loading…", "Image": ""},
+  {"Key": "reconnect_failed", "Text": "Connection lost. Please sign in again.", "Image": ""},
+  {"Key": "network_error", "Text": "Network error. Please check your connection.", "Image": ""},
+  {"Key": "account_label", "Text": "Account:", "Image": ""},
+  {"Key": "password_label", "Text": "Password:", "Image": ""},
+  {"Key": "item_sword", "Text": "Iron Sword", "Image": ""},
+  {"Key": "item_potion", "Text": "Health Potion", "Image": ""}
+]

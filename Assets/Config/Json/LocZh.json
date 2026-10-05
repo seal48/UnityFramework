@@ -1,0 +1,17 @@
+[
+  {"Key": "main_title", "Text": "主城", "Image": "UI/Main/title_zh"},
+  {"Key": "login_button", "Text": "登录", "Image": "UI/Login/btn_login_zh"},
+  {"Key": "register_button", "Text": "注册", "Image": "UI/Login/btn_register_zh"},
+  {"Key": "confirm", "Text": "确定", "Image": "UI/Common/btn_confirm_zh"},
+  {"Key": "cancel", "Text": "取消", "Image": "UI/Common/btn_cancel_zh"},
+  {"Key": "bag", "Text": "背包", "Image": "UI/Main/btn_bag_zh"},
+  {"Key": "shop", "Text": "商店", "Image": "UI/Main/btn_shop_zh"},
+  {"Key": "settings", "Text": "设置", "Image": "UI/Main/btn_settings_zh"},
+  {"Key": "loading_tip", "Text": "正在加载…", "Image": ""},
+  {"Key": "reconnect_failed", "Text": "连接断开，请重新登录", "Image": ""},
+  {"Key": "network_error", "Text": "网络异常，请检查网络", "Image": ""},
+  {"Key": "account_label", "Text": "账号：", "Image": ""},
+  {"Key": "password_label", "Text": "密码：", "Image": ""},
+  {"Key": "item_sword", "Text": "铁剑", "Image": ""},
+  {"Key": "item_potion", "Text": "红药水", "Image": ""}
+]

@@ -1,0 +1,19 @@
+{
+    "name": "GameFramework.Environments",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Log",
+        "GameFramework.Resource",
+        "GameFramework.Storage"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

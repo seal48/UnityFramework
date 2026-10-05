@@ -1,0 +1,5 @@
+[
+  {"Id": 1, "Name": "测试服-1服", "Host": "127.0.0.1", "Port": 7777, "Status": 1, "IsRecommended": true, "SortOrder": 1, "Announce": "官方推荐"},
+  {"Id": 2, "Name": "测试服-2服", "Host": "127.0.0.1", "Port": 7778, "Status": 1, "IsRecommended": false, "SortOrder": 2, "Announce": ""},
+  {"Id": 3, "Name": "测试服-3服", "Host": "127.0.0.1", "Port": 7779, "Status": 2, "IsRecommended": false, "SortOrder": 3, "Announce": "维护中，预计 10 点开服"}
+]

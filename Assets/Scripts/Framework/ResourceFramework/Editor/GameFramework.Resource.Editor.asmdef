@@ -1,0 +1,21 @@
+{
+    "name": "GameFramework.Resource.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Resource",
+        "GameFramework.Log",
+        "YooAsset",
+        "YooAsset.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

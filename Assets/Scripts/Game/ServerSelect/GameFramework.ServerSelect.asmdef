@@ -1,0 +1,21 @@
+{
+    "name": "GameFramework.ServerSelect",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Config",
+        "GameFramework.Core",
+        "GameFramework.Event",
+        "GameFramework.Log",
+        "GameFramework.Storage",
+        "GameFramework.Config.Unity"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793a7e7ddda30f14b8ca6765eb28615d, type: 3}
+  m_Name: EnvironmentConfig
+  m_EditorClassIdentifier: 
+  active: 0
+  environments:
+  - DisplayName: "\u5F00\u53D1"
+    ServerHost: 127.0.0.1
+    ServerPort: 7777
+    ResourceMode: 2
+    ResourceHostUrl: http://127.0.0.1:8000/Android/DefaultPackage
+    ResourceFallbackUrl: 
+    FileVerifyLevel: 3
+    LogLevel: 5
+    LogPushMessages: 1
+    StorageInGameFolder: 1
+  - DisplayName: "\u6D4B\u8BD5"
+    ServerHost: 127.0.0.1
+    ServerPort: 7777
+    ResourceMode: 2
+    ResourceHostUrl: http://127.0.0.1:8000/Android/DefaultPackage
+    ResourceFallbackUrl: 
+    FileVerifyLevel: 3
+    LogLevel: 4
+    LogPushMessages: 0
+    StorageInGameFolder: 0
+  - DisplayName: "\u6B63\u5F0F"
+    ServerHost: 127.0.0.1
+    ServerPort: 7777
+    ResourceMode: 2
+    ResourceHostUrl: http://127.0.0.1:8000/Android/DefaultPackage
+    ResourceFallbackUrl: 
+    FileVerifyLevel: 3
+    LogLevel: 3
+    LogPushMessages: 0
+    StorageInGameFolder: 0

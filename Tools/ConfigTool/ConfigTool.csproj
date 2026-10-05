@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    独立的配置表导出器（不开 Unity 也能导出 / 校验配置表）。
+    源码不复制一份，直接 link 工程里的配置表工具，保证和 Unity 菜单「导出全部表」是同一份实现。
+    发布见 README；不要在这里写命令行，XML 注释里不允许出现两个连字符
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>ConfigTool</AssemblyName>
+    <RootNamespace>GameFramework.Config.Tool</RootNamespace>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Assets\Scripts\Framework\Config\Runtime\**\*.cs" />
+    <Compile Include="..\..\Assets\Scripts\Framework\Config\Editor\ConfigSchema.cs" />
+    <Compile Include="..\..\Assets\Scripts\Framework\Config\Editor\ConfigGenerator.cs" />
+    <Compile Include="..\..\Assets\Scripts\Framework\Config\Editor\ConfigExporter.cs" />
+    <Compile Include="..\..\Assets\Scripts\Framework\Config\Editor\ConfigCharSet.cs" />
+    <Compile Include="..\..\Assets\Scripts\Framework\Config\Editor\XlsxReader.cs" />
+  </ItemGroup>
+
+</Project>

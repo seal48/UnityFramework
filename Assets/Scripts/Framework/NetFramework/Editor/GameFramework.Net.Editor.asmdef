@@ -1,0 +1,24 @@
+{
+    "name": "GameFramework.Net.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Net.Shared",
+        "GameFramework.Net.Server",
+        "GameFramework.Net.Client",
+        "GameFramework.Log",
+        "GameFramework.Net.Client.Unity",
+        "GameFramework.Net.ServerHost",
+        "GameFramework.Timer.Core"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

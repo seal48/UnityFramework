@@ -1,0 +1,19 @@
+{
+    "name": "GameFramework.Config.Unity",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Config",
+        "GameFramework.Log",
+        "GameFramework.Resource"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

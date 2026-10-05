@@ -1,0 +1,18 @@
+{
+    "name": "GameFramework.Pool",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Resource",
+        "GameFramework.Log"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

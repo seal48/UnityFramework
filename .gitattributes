@@ -1,0 +1,66 @@
+# 默认按文本处理并统一成 LF（工程约定：UTF-8 无 BOM + LF）
+* text=auto eol=lf
+
+# ---- 源码 / 文本 ----
+*.cs        text diff=csharp
+*.shader    text
+*.json      text
+*.xml       text
+*.md        text
+*.txt       text
+*.yml       text
+*.yaml      text
+*.asmdef    text
+*.html      text
+
+# ---- Unity 文本序列化资产（可 diff，便于 review）----
+*.unity      text
+*.prefab     text
+*.asset      text
+*.meta       text
+*.mat        text
+*.anim       text
+*.controller text
+*.overrideController text
+*.physicMaterial    text
+
+# ---- Windows 脚本要 CRLF ----
+*.cmd       text eol=crlf
+*.bat       text eol=crlf
+
+# ---- 二进制：禁止当文本处理（避免合并出坏文件）----
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.psd       binary
+*.tga       binary
+*.exr       binary
+*.ttf       binary
+*.otf       binary
+*.fbx       binary
+*.dll       binary
+*.so        binary
+*.a         binary
+*.dylib     binary
+*.bytes     binary
+*.bundle    binary
+*.apk       binary
+*.aab       binary
+*.jar       binary
+*.zip       binary
+*.db        binary
+*.sqlite    binary
+
+# ============================================================
+#  可选：Unity 的 YAML 智能合并
+#  想让 .unity/.prefab 冲突时按对象合并（而不是整文件冲突），
+#  执行一次下面的配置（UnityYAMLMerge 随 Unity 安装）：
+#
+#    git config merge.unityyamlmerge.name "Unity SmartMerge"
+#    git config merge.unityyamlmerge.driver \
+#      "\"C:/Program Files/Unity/Hub/Editor/<版本>/Editor/Data/Tools/UnityYAMLMerge.exe\" merge -p %O %B %A %A"
+#
+#  说明：这里**故意不写** merge=unityyamlmerge 属性 —— 没配 driver 时
+#  git 会在合并时报 "unknown merge driver" 错误，反而更麻烦。
+# ============================================================

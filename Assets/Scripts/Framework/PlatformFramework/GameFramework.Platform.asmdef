@@ -1,0 +1,22 @@
+{
+    "name": "GameFramework.Platform",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Event",
+        "GameFramework.Log",
+        "GameFramework.Net.Client.Unity",
+        "GameFramework.Timer",
+        "GameFramework.UI",
+        "GameFramework.Timer.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

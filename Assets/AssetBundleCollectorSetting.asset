@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185f6993d5150494d98da50e26cb1c25, type: 3}
+  m_Name: AssetBundleCollectorSetting
+  m_EditorClassIdentifier: 
+  ShowPackageView: 0
+  ShowEditorAlias: 0
+  UniqueBundleName: 0
+  Packages:
+  - PackageName: DefaultPackage
+    PackageDesc: "\u9ED8\u8BA4\u8D44\u6E90\u5305"
+    EnableAddressable: 0
+    SupportExtensionless: 1
+    LocationToLower: 0
+    IncludeAssetGUID: 0
+    AutoCollectShaders: 1
+    IgnoreRuleName: NormalIgnoreRule
+    Groups:
+    - GroupName: Prefabs
+      GroupDesc: "UI \u9884\u5236\u4F53"
+      AssetTags: prefab
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/Prefabs
+        CollectorGUID: 2b2cf47bd47f99d47b613b359c51001a
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectPrefab
+        AssetTags: prefab
+        UserData: 
+    - GroupName: Config
+      GroupDesc: "\u914D\u7F6E\u8868\u6570\u636E"
+      AssetTags: config
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/ConfigData
+        CollectorGUID: eac2774a1a3de6d4497afef28d98f732
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: config
+        UserData: 
+    - GroupName: Audio
+      GroupDesc: "\u97F3\u9891\uFF08BGM / \u97F3\u6548\uFF09"
+      AssetTags: audio
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/Audio
+        CollectorGUID: e325fb429de723742b28695f23827d84
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: audio
+        UserData: 
+    - GroupName: Fonts
+      GroupDesc: "\u5B57\u4F53"
+      AssetTags: font
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/Fonts
+        CollectorGUID: d4841efd20f68a2478ab08a0aeaa1940
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: font
+        UserData: 
+    - GroupName: Scenes
+      GroupDesc: "\u573A\u666F\uFF08\u53EA\u6536 .unity\uFF09"
+      AssetTags: scene
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/Scenes
+        CollectorGUID: 30a6f92ad3dc7704fa2df8274fb9ccc4
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectScene
+        AssetTags: scene
+        UserData: 

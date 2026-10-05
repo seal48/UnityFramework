@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    后端独立进程的构建脚本。
+    真正的代码全部在 Assets/Scripts/Framework 下（Unity 与后端共用同一份源码），
+    这里只是把它编译成一个可以 dotnet run 的控制台程序，所以放在 Assets 之外，
+    避免 bin/obj 被 Unity 当成资源导入。
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>GameServerHost</AssemblyName>
+    <RootNamespace>GameFramework.ServerHost</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <!-- 关掉 invariant globalization：账号名规范化（Unicode NFKC）需要 ICU 支持 -->
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Assets\Scripts\Framework\NetFramework\ServerHost\**\*.cs" />
+    <Compile Include="..\Assets\Scripts\Framework\NetFramework\Shared\**\*.cs" />
+    <Compile Include="..\Assets\Scripts\Framework\NetFramework\Server\**\*.cs" />
+    <Compile Include="..\Assets\Scripts\Framework\NetFramework\Client\**\*.cs" Exclude="..\Assets\Scripts\Framework\NetFramework\Client\Unity\**\*.cs" />
+    <Compile Include="..\Assets\Scripts\Framework\NetFramework\Demo\**\*.cs" Exclude="..\Assets\Scripts\Framework\NetFramework\Demo\Editor\**\*.cs" />
+    <!-- 安全框架：协议加密（FrameCodec 依赖 SymmetricCrypto），纯 .NET 无 UnityEngine -->
+    <Compile Include="..\Assets\Scripts\Framework\SecurityFramework\**\*.cs" />
+    <!-- 计时内核：两端共用同一份调度逻辑（纯 C#）。只加 Core，TimerManager/TimerOptions 是 Unity 侧的 -->
+    <Compile Include="..\Assets\Scripts\Framework\TimerFramework\Core\**\*.cs" />
+    <!-- 配置表：客户端与服务端共用同一份生成代码 + 同一份 .bytes 数据 -->
+    <Compile Include="..\Assets\Scripts\Framework\Config\Runtime\**\*.cs" />
+    <Compile Include="..\Assets\Scripts\Framework\Config\Generated\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <!-- SQLite 账号存储（嵌入式数据库，单文件，不需要额外装服务） -->
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
+  </ItemGroup>
+
+</Project>

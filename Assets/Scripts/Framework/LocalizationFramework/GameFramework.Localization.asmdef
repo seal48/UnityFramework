@@ -1,0 +1,22 @@
+{
+    "name": "GameFramework.Localization",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Config",
+        "GameFramework.Event",
+        "GameFramework.Log",
+        "GameFramework.Resource",
+        "GameFramework.Storage",
+        "GameFramework.Config.Unity"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

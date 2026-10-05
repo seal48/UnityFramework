@@ -1,0 +1,22 @@
+{
+    "name": "GameFramework.Business",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Event",
+        "GameFramework.Log",
+        "GameFramework.Net.Client",
+        "GameFramework.Net.Shared",
+        "GameFramework.Net.Client.Unity",
+        "GameFramework.Timer.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

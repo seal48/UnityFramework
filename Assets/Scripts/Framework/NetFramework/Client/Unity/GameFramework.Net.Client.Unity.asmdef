@@ -1,0 +1,20 @@
+{
+    "name": "GameFramework.Net.Client.Unity",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework.Core",
+        "GameFramework.Net.Client",
+        "GameFramework.Net.Shared",
+        "GameFramework.Log",
+        "GameFramework.Timer.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
