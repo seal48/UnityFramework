@@ -51,10 +51,11 @@ AOT ──► 热更                 // AOT 代码不能静态引用热更程序
 | UI 字段绑定 | `Tools/UI/绑定/生成全部面板的绑定代码`（面板类要 `partial`） |
 | 出包 | `Tools/环境/构建/<环境>` → `Builds/<环境>/`；CI 用 `-executeMethod ...BuildFromCommandLine -environment X` |
 | **改业务代码（热更）** | `HybridCLR/CompileDll/ActiveBuildTarget` → 拷 3 个 DLL 到 `StreamingAssets/HotUpdate/` → 重建资源（红线 9） |
+| **图集打包** | 图片放 `Assets/UI/Atlas/<名>/` → `Tools/UI/图集/从目录创建图集` → 重建资源；运行时 `SpriteAtlases.GetSprite(<名>,<图>)` |
 
 ## 框架能力（一句话各模块）
 
-Log 分级落盘 / Event 总线 / Timer 计时内核(纯C#) / Procedure 流程 / Storage 存档(AES+HMAC) / Security 加密(纯C#) / Resource YooAsset热更+CRC / Net 协议加密+心跳+断线重连+服务端 / UI Panel+层级+绑定生成 / Config Excel工具链 / Localization 多语言(文本/图片/字体) / Audio BGM+音效池 / Scene 进度加载 / Pool 对象池 / Platform 生命周期+安全区+权限+返回键 / Environments 多环境 / Core 生命周期契约 / **HybridCLR 代码热更**。
+Log 分级落盘 / Event 总线 / Timer 计时内核(纯C#) / Procedure 流程 / Storage 存档(AES+HMAC) / Security 加密(纯C#) / Resource YooAsset热更+CRC / Net 协议加密+心跳+断线重连+服务端 / UI Panel+层级+绑定生成+**图集(SpriteAtlasManager)** / Config Excel工具链 / Localization 多语言(文本/图片/字体) / Audio BGM+音效池 / Scene 进度加载 / Pool 对象池 / Platform 生命周期+安全区+权限+返回键 / Environments 多环境 / Core 生命周期契约 / **HybridCLR 代码热更**。
 
 ## 依赖快照（谁引用谁）
 

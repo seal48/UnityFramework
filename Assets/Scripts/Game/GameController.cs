@@ -91,6 +91,7 @@ public class GameController : MonoBehaviour
     /// <summary>当前环境的参数（来自 EnvironmentConfig）；没有配置资产时为 null，用场景里的默认值。</summary>
     private EnvironmentEntry environment;
     private UIManager ui;
+    private SpriteAtlasManager spriteAtlases;
     private ProcedureManager procedures;
     private BusinessManager business;
     private ConfigManager config;
@@ -133,6 +134,12 @@ public class GameController : MonoBehaviour
     public UIManager UI
     {
         get { return ui; }
+    }
+
+    /// <summary>UI 图集服务。按名字取图：GameController.Instance.SpriteAtlases.GetSprite("Icon", "sword")。</summary>
+    public SpriteAtlasManager SpriteAtlases
+    {
+        get { return spriteAtlases; }
     }
 
     /// <summary>流程管理器（启动流程 / 状态机）。</summary>
@@ -262,6 +269,7 @@ public class GameController : MonoBehaviour
         pool = new ObjectPoolManager();
         storage = new LocalStorageManager();
         ui = new UIManager();
+        spriteAtlases = new SpriteAtlasManager();
         audioMgr = new AudioManager();
         scene = new SceneLoader();
         platform = new PlatformManager(platformOptions, events, ui, timer, gameClient);
@@ -444,6 +452,12 @@ public class GameController : MonoBehaviour
             ui = null;
         }
 
+        if (spriteAtlases != null)
+        {
+            spriteAtlases.Shutdown();
+            spriteAtlases = null;
+        }
+
         if (audioMgr != null)
         {
             audioMgr.VolumeChanged -= OnAudioVolumeChanged;
@@ -552,6 +566,10 @@ public class GameController : MonoBehaviour
             if (onComplete != null) onComplete(true, "UI 已初始化");
             return;
         }
+
+        // 图集管理器跟着 UI 一起初始化（依赖资源服务）
+        if (spriteAtlases != null && !spriteAtlases.IsInitialized)
+            spriteAtlases.Init(resource);
 
         ui.Init(resource, uiOptions, events, timer, onComplete);
     }

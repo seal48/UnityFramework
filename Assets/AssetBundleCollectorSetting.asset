@@ -90,3 +90,16 @@ MonoBehaviour:
         FilterRuleName: CollectScene
         AssetTags: scene
         UserData: 
+    - GroupName: UI
+      GroupDesc: "UI \u56FE\u96C6 / \u56FE\u7247"
+      AssetTags: ui
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/UI
+        CollectorGUID: 
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: ui
+        UserData: 

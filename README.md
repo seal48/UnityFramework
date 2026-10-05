@@ -93,6 +93,17 @@ Unity.exe -quit -batchmode -projectPath <工程> ^
   -environment Production -buildTarget Android
 ```
 
+### UI 图集（SpriteAtlas）
+
+```
+1) 把 Sprite 图片放进 Assets/UI/Atlas/<图集名>/  （一个子目录 = 一张图集）
+2) 菜单 Tools/UI/图集/从目录创建图集          （生成 <图集名>.spriteatlas）
+3) 重建资源包（Tools/YooAsset/2 + 6 + 清 yoo/）
+4) 运行时取图：
+     GameController.Instance.SpriteAtlases.GetSprite("图集名", "图片名")     // 已加载则同步
+     GameController.Instance.SpriteAtlases.GetSpriteAsync("图集名", "图片名", s => ...)  // 异步
+```
+
 ### UI 绑定代码生成
 
 ```
@@ -134,7 +145,7 @@ Unity.exe -quit -batchmode -projectPath <工程> ^
 | `SecurityFramework` | 协议与存档加解密（纯 C#） |
 | `ResourceFramework` | YooAsset 封装、远端热更、下载进度、CRC 校验 |
 | `NetFramework` | 协议编解码、客户端（心跳 / 断线重连）、服务端、区服 |
-| `UIFramework` | Panel / 层级 / 异步加载 / 绑定代码生成 |
+| `UIFramework` | Panel / 层级 / 异步加载 / 绑定代码生成 / SpriteAtlas 图集取图 |
 | `Config` | Excel -> 代码 + bytes 工具链，客户端服务端同一份表 |
 | `LocalizationFramework` | 多语言：文本 / 图片 / 字体，一个 ID 对应各语言内容 |
 | `AudioFramework` | BGM 淡入淡出、音效通道池 |
