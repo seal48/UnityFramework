@@ -1,5 +1,5 @@
 [
-  {"Id": "item_icon_sword", "Atlas": "TestAtlas", "Sprite": "sword", "Remark": "铁剑图标(演示)"},
-  {"Id": "item_icon_potion", "Atlas": "TestAtlas", "Sprite": "potion", "Remark": "红药水图标(演示)"},
-  {"Id": "ui_btn_coin", "Atlas": "TestAtlas", "Sprite": "coin", "Remark": "金币(演示)"}
+  {"Id": "icon_sword", "Atlas": "TestAtlas", "Sprite": "sword", "Remark": "铁剑图标(演示，对齐 Item.IconPath)"},
+  {"Id": "icon_potion", "Atlas": "TestAtlas", "Sprite": "potion", "Remark": "红药水图标(演示，对齐 Item.IconPath)"},
+  {"Id": "ui_btn_coin", "Atlas": "TestAtlas", "Sprite": "coin", "Remark": "金币按钮(演示)"}
 ]
