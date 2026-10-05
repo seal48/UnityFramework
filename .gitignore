@@ -117,3 +117,9 @@ crashlytics-build.properties
 Thumbs.db
 desktop.ini
 sysinfo.txt
+
+# ============================================================
+#  HybridCLR 数据目录（1.2GB：克隆的仓库 + il2cpp 副本 + 编译产物）
+#  重新执行 HybridCLR/Installer/Install 即可重建
+# ============================================================
+/HybridCLRData/

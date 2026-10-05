@@ -108,6 +108,21 @@ public class GameController : MonoBehaviour
         get { return instance; }
     }
 
+    /// <summary>
+    /// 创建游戏根节点（HybridCLR 热更入口调用）。
+    /// 热更模式下场景里没有 GameController 组件（场景脚本必须是 AOT），
+    /// 由 AOT 的 HybridCLRBoot 加载热更程序集后反射调用本方法，运行时挂组件。
+    /// </summary>
+    public static GameController CreateRoot()
+    {
+        if (instance != null)
+            return instance;
+
+        var go = new GameObject("GameController");
+        UnityEngine.Object.DontDestroyOnLoad(go);
+        return go.AddComponent<GameController>();
+    }
+
     /// <summary>资源服务。业务代码只依赖这个接口，不直接碰 YooAsset。</summary>
     public IResourceService Resource
     {
@@ -205,6 +220,10 @@ public class GameController : MonoBehaviour
 
         instance = this;
 
+        // 启动配置：GameController 是热更程序集，场景里不能序列化它的字段，
+        // 所以这些启动选项统一放在 AOT 的 GameOptions 资产里（场景值已迁移过去）
+        LoadOptionsFromGameOptions();
+
         // 多环境配置最先应用：服务器地址 / 资源地址 / 日志级别以 EnvironmentConfig 为准，
         // 覆盖场景里序列化的默认值（必须在 InitLog 之前，日志级别要先生效）
         ApplyEnvironment();
@@ -264,6 +283,31 @@ public class GameController : MonoBehaviour
             new ProcedureLogin(),
             new ProcedureEnterLobby(),
             new ProcedureLobby());
+    }
+
+    /// <summary>
+    /// 从 AOT 的 <see cref="GameFramework.Boot.GameOptions"/> 加载启动配置。
+    /// GameController 在热更程序集里，场景序列化不了它的字段，所以选项统一放这个资产。
+    /// 资产不存在时字段保持代码默认值（GameOptions.Instance 内部会打警告）。
+    /// </summary>
+    private void LoadOptionsFromGameOptions()
+    {
+        GameFramework.Boot.GameOptions o = GameFramework.Boot.GameOptions.Instance;
+        if (o == null)
+            return;
+
+        logOptions = o.logOptions;
+        resourceOptions = o.resourceOptions;
+        uiOptions = o.uiOptions;
+        eventOptions = o.eventOptions;
+        poolOptions = o.poolOptions;
+        storageOptions = o.storageOptions;
+        timerOptions = o.timerOptions;
+        audioOptions = o.audioOptions;
+        sceneOptions = o.sceneOptions;
+        platformOptions = o.platformOptions;
+        localizationOptions = o.localizationOptions;
+        logPushMessages = o.logPushMessages;
     }
 
     /// <summary>

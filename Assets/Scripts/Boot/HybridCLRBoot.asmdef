@@ -1,0 +1,28 @@
+{
+    "name": "HybridCLRBoot",
+    "rootNamespace": "",
+    "references": [
+        "HybridCLR.Runtime",
+        "GameFramework.Audio",
+        "GameFramework.Event",
+        "GameFramework.Localization",
+        "GameFramework.Log",
+        "GameFramework.Platform",
+        "GameFramework.Pool",
+        "GameFramework.Resource",
+        "GameFramework.Scenes",
+        "GameFramework.Storage",
+        "GameFramework.Timer",
+        "GameFramework.UI",
+        "GameFramework.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

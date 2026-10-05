@@ -2,6 +2,7 @@
     "name": "Game",
     "rootNamespace": "",
     "references": [
+        "HybridCLRBoot",
         "GameFramework.Core",
         "GameFramework.Audio",
         "GameFramework.Business",

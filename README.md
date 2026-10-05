@@ -102,6 +102,26 @@ Unity.exe -quit -batchmode -projectPath <工程> ^
 扫预制体生成 `XxxPanel.Bindings.g.cs` 里的字段声明，免去运行时按字符串查找。
 面板类需要是 `partial`。
 
+### 代码热更（HybridCLR）
+
+业务层（`Game` / `GameFramework.Business` / `GameFramework.ServerSelect`）是**热更程序集**，
+真机 IL2CPP 构建时编成 DLL 从 `StreamingAssets/HotUpdate/` 动态加载；框架层 AOT 留在包里。
+入口：场景挂 AOT 的 `HybridCLRBoot` → 加载热更 DLL → 反射 `Game.HotEntry.Boot()` → `GameController.CreateRoot()`。
+
+```
+改业务代码后出包：
+1) 菜单 HybridCLR/CompileDll/ActiveBuildTarget       编译热更 DLL
+2) 把 HybridCLRData/HotUpdateDlls/<平台>/ 下的 Game.dll /
+   GameFramework.Business.dll / GameFramework.ServerSelect.dll
+   拷到 Assets/StreamingAssets/HotUpdate/
+3) 重建资源包（Tools/YooAsset/2 + 6 + 清 yoo/ 缓存）
+4) Tools/环境/构建/<环境> 出包
+```
+
+> 编辑器里不加载热更 DLL（直接用编译进编辑器的程序集），所以编辑器改代码不用重编 DLL。
+> 改 AOT 程序集后跑 `HybridCLR/Generate/All` 重新生成 `Assets/HybridCLRGenerate/`（别手动改）。
+> 详见 [`Assets/Scripts/Boot/README.md`](Assets/Scripts/Boot/README.md)。
+
 ## 框架能力
 
 | 模块 | 说明 |
@@ -123,6 +143,7 @@ Unity.exe -quit -batchmode -projectPath <工程> ^
 | `PlatformFramework` | 生命周期、安全区、权限、返回键、回前台断线处理 |
 | `Environments` | 多环境配置与构建时切换 |
 | `Core` | 跨模块契约（`IGameModule` / `ITickable`） |
+| `HybridCLRBoot` | HybridCLR 代码热更引导（AOT，场景挂载）+ `GameOptions` 启动配置 |
 
 ## 程序集划分
 

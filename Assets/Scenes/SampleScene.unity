@@ -310,10 +310,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1368441191}
-  - component: {fileID: 1368441192}
   - component: {fileID: 1368441193}
+  - component: {fileID: 1368441194}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,135 +334,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1368441192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368441189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d884838989e9d5640a0ee741e93e2ad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logOptions:
-    MinLevel: 4
-    MinLevelInDevelopment: 5
-    ColoredConsole: 1
-    WriteToFile: 1
-    FolderName: GameLogs
-    RootPathOverride: 
-    MaxFileCount: 7
-    MaxHistory: 500
-    FlushInterval: 2
-    MutedTags: []
-    CaptureStackTrace: 1
-  gameClient: {fileID: 0}
-  resourceOptions:
-    PlayMode: 2
-    PackageName: DefaultPackage
-    HostServerURL: http://127.0.0.1:8000/Android/DefaultPackage
-    FallbackHostServerURL: 
-    DownloadingMaxNumber: 10
-    FailedTryAgain: 3
-    MaxTimeSliceMs: 30
-    AutoUnloadBundleWhenUnused: 0
-    FallbackToOfflineOnHostFailure: 1
-    FileVerifyLevel: 3
-  uiOptions:
-    RootPrefabLocation: Assets/Prefabs/UIRoot.prefab
-    DontDestroyOnLoad: 1
-    CreateRootIfMissing: 1
-    RegisterAllPanels: 1
-    PanelPrefabFolder: Assets/Prefabs/
-    Anim:
-      Enabled: 1
-      DefaultDuration: 0.25
-      ShowDuration: 0.25
-      HideDuration: 0.2
-      ShowEase: 6
-      HideEase: 5
-      UseUnscaledTime: 1
-      SlideDistance: 160
-      StartScale: 0.9
-      BlockRaycastWhileAnimating: 1
-      MaxTweens: 512
-      MaxSequences: 64
-    PreloadPanels: []
-  eventOptions:
-    LogPublish: 0
-    MaxEventsPerFlush: 1000
-  poolOptions:
-    RootName: '[ObjectPool]'
-    DontDestroyOnLoad: 1
-    Default:
-      MaxSize: 64
-      MaxAlive: 0
-      IdleShrinkDelay: 60
-      CollectionCheck: 1
-      PrewarmCount: 0
-    Prewarm: []
-    ClearPoolsOnSceneChange: 0
-    LogOnInit: 1
-  storageOptions:
-    FolderName: LocalData
-    RootPathOverride: 
-    RootMode: 1
-    AutoFlushDelay: 1
-    FlushOnPause: 1
-    FlushOnQuit: 1
-    PrettyJson: 1
-    EnableEncryption: 1
-    BackupCorruptFile: 1
-    LogOnInit: 1
-  timerOptions:
-    MaxTimers: 0
-    WarnFiresPerFrame: 1000
-    WarnSlowCallbackMs: 20
-    LogOnInit: 1
-  audioOptions:
-    RootName: '[Audio]'
-    DontDestroyOnLoad: 1
-    MaxSfxVoices: 16
-    MasterVolume: 1
-    BgmVolume: 1
-    SfxVolume: 1
-    SfxMinDistance: 1
-    SfxMaxDistance: 30
-    DefaultFade: 0.4
-    SfxFolder: Assets/Audio/Sfx/
-    BgmFolder: Assets/Audio/Bgm/
-    SearchExtensions:
-    - .wav
-    - .ogg
-    - .mp3
-    - .aiff
-    LogOnInit: 1
-  sceneOptions:
-    ShowLoadingPanel: 1
-    LoadingPanelName: LoadingPanel
-    MinLoadingTime: 0.6
-    DefaultTip: "\u6B63\u5728\u52A0\u8F7D\u2026"
-    CloseAllPanelsOnSingle: 1
-    SceneFolder: Assets/Scenes/
-    LogOnInit: 1
-  platformOptions:
-    ApplySafeArea: 1
-    TrackBackKey: 1
-    BackOnRoot: 0
-    ReconnectOnResume: 1
-    ReconnectMaxAttempts: 3
-    ReconnectRetryDelay: 2
-    BackgroundThresholdSeconds: 1.5
-  localizationOptions:
-    DefaultLanguage: zh-CN
-    FallbackLanguage: zh-CN
-    SupportedLanguages:
-    - zh-CN
-    - en-US
-    EditorFontFallback: 1
-  logPushMessages: 1
 --- !u!114 &1368441193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,3 +349,23 @@ MonoBehaviour:
   PanelName: LoginPanel
   OpenOnStart: 0
   ToggleKey: 282
+--- !u!114 &1368441194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368441189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe1c292713c8ce49bfe4a54a74db406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotUpdateDlls:
+  - GameFramework.Business.dll
+  - GameFramework.ServerSelect.dll
+  - Game.dll
+  deviceDllFolder: HotUpdate
+  editorDllFolder: HybridCLRData/HotUpdateDlls
+  metadataFileName: global-metadata.dat
+  loadAotMetadataOnDeviceOnly: 1
