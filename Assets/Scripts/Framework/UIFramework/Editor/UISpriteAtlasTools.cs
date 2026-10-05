@@ -54,10 +54,27 @@ namespace GameFramework.UI.EditorTools
             // 关键：图集必须「打包」才真正生成图集纹理。
             // 未打包的图集里 Sprite 是占位符，运行时 GetSprite() 会原生崩溃（SIGSEGV）！
             // YooAsset 的 bundle 构建不会自动打包图集，必须在这里显式打包。
-            SpriteAtlasUtility.PackAllAtlases(EditorUserBuildSettings.activeBuildTarget, false);
+            // 注意：必须用 PackAtlases（指定图集）逐个打包；PackAllAtlases 不识别脚本新建的图集
+            foreach (string dir in Directory.GetDirectories(AtlasRoot))
+            {
+                string name = Path.GetFileName(dir);
+                string atlasPath = AtlasRoot + "/" + name + ".spriteatlas";
+                SpriteAtlas toPack = AssetDatabase.LoadAssetAtPath<SpriteAtlas>(atlasPath);
+                if (toPack != null)
+                    SpriteAtlasUtility.PackAtlases(new SpriteAtlas[] { toPack }, EditorUserBuildSettings.activeBuildTarget, false);
+            }
 
+            // 打包结果必须再 Save 一次才落盘（否则 m_PackedSprites 是空的）
+            foreach (string dir in Directory.GetDirectories(AtlasRoot))
+            {
+                string name = Path.GetFileName(dir);
+                string atlasPath = AtlasRoot + "/" + name + ".spriteatlas";
+                SpriteAtlas packed = AssetDatabase.LoadAssetAtPath<SpriteAtlas>(atlasPath);
+                if (packed != null) EditorUtility.SetDirty(packed);
+            }
+            AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            Debug.Log("[图集] 打包完成，新建 " + created + " 张图集，已强制打包（共 " +
+            Debug.Log("[图集] 打包完成，新建 " + created + " 张图集，已强制打包并保存（共 " +
                       Directory.GetDirectories(AtlasRoot).Length + " 个目录）。");
         }
 
