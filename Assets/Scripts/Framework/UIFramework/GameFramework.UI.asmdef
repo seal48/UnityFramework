@@ -7,6 +7,8 @@
         "GameFramework.Log",
         "GameFramework.Timer",
         "GameFramework.Resource",
+        "GameFramework.Config",
+        "GameFramework.Config.Unity",
         "DOTween.Modules"
     ],
     "includePlatforms": [],

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using GameFramework.Config;
 using GameFramework.Core;
+using GameFramework.Log;
 using GameFramework.Resource;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -8,19 +10,22 @@ using UnityEngine.U2D;
 namespace GameFramework.UI
 {
     /// <summary>
-    /// UI 图集管理器：按名字从 SpriteAtlas 取图，减少 draw call。
+    /// UI 图集管理器：按逻辑 ID 从配置表取图，减少 draw call。
     ///
-    /// 约定：图集资产放在 <c>Assets/UI/Atlas/&lt;图集名&gt;.spriteatlas</c>（编辑器菜单
-    /// <c>Tools/UI/图集/从目录创建图集</c> 从一个目录打包生成）。取图地址按
-    /// <c>Assets/UI/Atlas/&lt;图集名&gt;.spriteatlas</c>，Sprite 名字就是图集里的资源名。
+    /// **表驱动**：图集 / 图片名不写死在代码里，而是放在配置表 <c>UISprite.xlsx</c>
+    /// （Id → Atlas 图集名 + Sprite 图集内图片名）。业务代码只写逻辑 ID：
     ///
-    /// 用法：
     ///   SpriteAtlasManager atlases = GameController.Instance.SpriteAtlases;
-    ///   atlases.PreloadAsync("Icon", ok => { ... });            // 预加载
-    ///   Sprite s = atlases.GetSprite("Icon", "sword");          // 已加载时同步取
-    ///   atlases.GetSpriteAsync("Icon", "sword", s => { ... });  // 未加载则先加载再取
+    ///   Sprite s = atlases.GetSpriteById("item_icon_sword");          // 已加载则同步取
+    ///   atlases.GetSpriteByIdAsync("item_icon_sword", s => { ... });  // 未加载先加载图集
     ///
-    /// 缓存保持图集引用（不释放），Shutdown 时统一释放。改图集资产后要重建资源包（红线 4）。
+    /// 底层也保留按名直取：<see cref="GetSprite(string, string)"/>（图集名 + 图片名），
+    /// 一般业务用表驱动版本就够了。
+    ///
+    /// 图集资产在 <c>Assets/UI/Atlas/&lt;图集名&gt;.spriteatlas</c>（编辑器菜单
+    /// <c>Tools/UI/图集/从目录创建图集</c> 从一个目录打包生成）。
+    /// 图集在 YooAsset bundle 里，走远端下载 = **资源热更**（改图不用发版）。
+    /// 缓存保持图集引用（不释放），Shutdown 时统一释放。
     /// </summary>
     public sealed class SpriteAtlasManager : IGameModule
     {
@@ -28,20 +33,22 @@ namespace GameFramework.UI
         public const string AtlasRoot = "Assets/UI/Atlas/";
 
         private IResourceService resource;
+        private ConfigManager config;
         private readonly Dictionary<string, ResourceAsset<SpriteAtlas>> atlases =
             new Dictionary<string, ResourceAsset<SpriteAtlas>>(StringComparer.Ordinal);
         private bool shutdown;
 
-        /// <summary>是否已初始化（资源服务可用且未关闭）。</summary>
-        public bool IsInitialized { get { return resource != null && !shutdown; } }
+        /// <summary>是否已初始化（资源服务 / 配置表可用且未关闭）。</summary>
+        public bool IsInitialized { get { return resource != null && config != null && !shutdown; } }
 
         /// <summary>已预加载的图集名。</summary>
         public IReadOnlyCollection<string> LoadedAtlasNames { get { return atlases.Keys; } }
 
-        /// <summary>初始化。资源服务就绪后调用（ProcedureInitUI 里，和 UI 一起）。</summary>
-        public void Init(IResourceService resourceService)
+        /// <summary>初始化。配置表与资源服务就绪后调用（ProcedureInitUI 里，和 UI 一起）。</summary>
+        public void Init(IResourceService resourceService, ConfigManager configManager)
         {
             resource = resourceService;
+            config = configManager;
         }
 
         /// <summary>图集资产地址（按约定拼）。</summary>
@@ -110,6 +117,39 @@ namespace GameFramework.UI
                 if (onLoaded == null) return;
                 onLoaded(ok ? GetSprite(atlasName, spriteName) : null);
             });
+        }
+
+        /// <summary>
+        /// 按逻辑 ID 从配置表取图（推荐 API）。查 UISprite.xlsx：Id → (图集名, 图片名)。
+        /// 图集已加载时同步返回，否则返回 null（用 <see cref="GetSpriteByIdAsync"/> 或先 Preload）。
+        /// </summary>
+        public Sprite GetSpriteById(string id)
+        {
+            UISpriteConfig row = FindRow(id);
+            if (row == null) return null;
+            return GetSprite(row.Atlas, row.Sprite);
+        }
+
+        /// <summary>按逻辑 ID 异步取图：图集没加载先加载，再回调 Sprite（表里没有/失败回 null）。</summary>
+        public void GetSpriteByIdAsync(string id, Action<Sprite> onLoaded)
+        {
+            UISpriteConfig row = FindRow(id);
+            if (row == null)
+            {
+                GameLog.Warn(LogTag.UIManager, "[SpriteAtlas] 配置表 UISprite 里没有 ID：" + id);
+                if (onLoaded != null) onLoaded(null);
+                return;
+            }
+
+            GetSpriteAsync(row.Atlas, row.Sprite, onLoaded);
+        }
+
+        private UISpriteConfig FindRow(string id)
+        {
+            if (config == null || string.IsNullOrEmpty(id)) return null;
+            ConfigDatabase db = config.Database;
+            if (db == null || db.UISprite == null) return null;
+            return db.UISprite.Get(id);
         }
 
         /// <summary>释放全部缓存的图集。幂等。</summary>

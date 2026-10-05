@@ -53,7 +53,8 @@ AOT ──► 热更           不允许：AOT 代码不能静态引用热更程
 | 改业务代码（热更） | `HybridCLR/CompileDll/ActiveBuildTarget` → 拷 3 个 DLL 到 `StreamingAssets/HotUpdate/` → 重建资源 |
 | HybridCLR 元数据 | 改 AOT 程序集后跑 `HybridCLR/Generate/All` |
 | UI 图集打包 | 把 Sprite 图片放进 `Assets/UI/Atlas/<图集名>/` → 菜单 `Tools/UI/图集/从目录创建图集` → 重建资源 |
-| 运行时取图 | `GameController.Instance.SpriteAtlases.GetSprite("图集名", "图片名")`（或 GetSpriteAsync） |
+| 图集配表 | `Assets/Config/Excel/UISprite.xlsx` 加一行（Id 逻辑ID → Atlas + Sprite）→ `Tools/配置表/导出全部表` → 重建资源 |
+| 运行时取图 | `GameController.Instance.SpriteAtlases.GetSpriteById("逻辑ID")`（或 GetSpriteByIdAsync）；图集在 bundle 里可热更 |
 
 ## 框架能力（一句话）
 

@@ -93,16 +93,22 @@ Unity.exe -quit -batchmode -projectPath <工程> ^
   -environment Production -buildTarget Android
 ```
 
-### UI 图集（SpriteAtlas）
+### UI 图集（SpriteAtlas，表驱动 + 热更）
 
 ```
 1) 把 Sprite 图片放进 Assets/UI/Atlas/<图集名>/  （一个子目录 = 一张图集）
 2) 菜单 Tools/UI/图集/从目录创建图集          （生成 <图集名>.spriteatlas）
-3) 重建资源包（Tools/YooAsset/2 + 6 + 清 yoo/）
-4) 运行时取图：
-     GameController.Instance.SpriteAtlases.GetSprite("图集名", "图片名")     // 已加载则同步
-     GameController.Instance.SpriteAtlases.GetSpriteAsync("图集名", "图片名", s => ...)  // 异步
+3) 配表：Assets/Config/Excel/UISprite.xlsx 加一行
+     Id(逻辑ID) | Atlas(图集名) | Sprite(图集内图片名)
+   然后 Tools/配置表/导出全部表
+4) 重建资源包（Tools/YooAsset/2 + 6 + 清 yoo/）
+5) 运行时取图（不写死图集/图片名，只用逻辑 ID）：
+     GameController.Instance.SpriteAtlases.GetSpriteById("item_icon_sword")        // 已加载则同步
+     GameController.Instance.SpriteAtlases.GetSpriteByIdAsync("item_icon_sword", s => ...)  // 异步
 ```
+
+> 图集在 YooAsset bundle 里，走远端下载 = **资源热更**（改图 / 加图不用发版，只更新资源包）。
+> 低层 API（按图集名+图片名直取）也保留：`GetSprite(atlas, sprite)` / `GetSpriteAsync`。
 
 ### UI 绑定代码生成
 

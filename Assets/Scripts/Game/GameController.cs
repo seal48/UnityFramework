@@ -569,7 +569,7 @@ public class GameController : MonoBehaviour
 
         // 图集管理器跟着 UI 一起初始化（依赖资源服务）
         if (spriteAtlases != null && !spriteAtlases.IsInitialized)
-            spriteAtlases.Init(resource);
+            spriteAtlases.Init(resource, config);
 
         ui.Init(resource, uiOptions, events, timer, onComplete);
     }

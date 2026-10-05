@@ -51,7 +51,7 @@ AOT ──► 热更                 // AOT 代码不能静态引用热更程序
 | UI 字段绑定 | `Tools/UI/绑定/生成全部面板的绑定代码`（面板类要 `partial`） |
 | 出包 | `Tools/环境/构建/<环境>` → `Builds/<环境>/`；CI 用 `-executeMethod ...BuildFromCommandLine -environment X` |
 | **改业务代码（热更）** | `HybridCLR/CompileDll/ActiveBuildTarget` → 拷 3 个 DLL 到 `StreamingAssets/HotUpdate/` → 重建资源（红线 9） |
-| **图集打包** | 图片放 `Assets/UI/Atlas/<名>/` → `Tools/UI/图集/从目录创建图集` → 重建资源；运行时 `SpriteAtlases.GetSprite(<名>,<图>)` |
+| **图集打包** | 图片放 `Assets/UI/Atlas/<名>/` → `Tools/UI/图集/从目录创建图集`；配表 `Config/Excel/UISprite.xlsx`（Id→Atlas+Sprite）→ 导出 → 重建资源；运行时 `SpriteAtlases.GetSpriteById(<Id>)` |
 
 ## 框架能力（一句话各模块）
 
