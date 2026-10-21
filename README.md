@@ -1,5 +1,7 @@
 # MCP — Unity 游戏框架 + 示例业务
 
+> 本框架基于 **[unity-mcp](https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main)**（Unity MCP / MCP for Unity）开发。
+
 一个**通用 Unity 手游框架**（`Framework/`）+ 一份**示例业务**（`Game/`），
 后端服务端与客户端**共享同一套纯 C# 代码**（协议 / 安全 / 计时内核 / 配置表）。
 
